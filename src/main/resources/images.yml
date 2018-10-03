@@ -1,0 +1,37 @@
+server:
+  port: 9080
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test?maxPoolSize=256
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: learning-spring-boot-comments
+          group: comments-service
+          content-type: application/json
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full
+  server:
+    port: 9081
+    address: 127.0.0.1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
